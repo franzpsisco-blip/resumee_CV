@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Franz Pablo Antezana Lopez — Civil Engineer | Remote Sensing & GIS</title>
+  <meta name="description" content="Franz Pablo Antezana Lopez — Civil Engineer focused on Remote Sensing, GIS, InSAR, geosciences, and data-driven Earth observation." />
+  <style>
+    :root{
+      --bg:#070b16;
+      --card: rgba(12,18,40,.70);
+      --card2: rgba(12,18,40,.55);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.10);
+      --accent: #7aa2ff;
+      --accent2:#52e3c2;
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1080px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.55;
+      overflow-x:hidden;
+    }
+
+    /* Earth background */
+    .bg{
+      position: fixed;
+      inset:0;
+      z-index:-2;
+      background:
+        linear-gradient(180deg, rgba(7,11,22,.85) 0%, rgba(7,11,22,.92) 35%, rgba(7,11,22,.98) 100%),
+        url('earth-bg.jpg');
+      background-size: cover;
+      background-position: center;
+      filter: saturate(1.05) contrast(1.05);
+      transform: scale(1.02);
+    }
+    .bg:after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 520px at 18% 12%, rgba(122,162,255,.20), transparent 60%),
+        radial-gradient(900px 520px at 86% 18%, rgba(82,227,194,.18), transparent 60%);
+      pointer-events:none;
+      z-index: -1;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 64px;}
+
+    /* Top bar */
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px;
+      padding:14px 16px;
+      border:1px solid var(--faint);
+      border-radius: var(--radius);
+      background: rgba(12,18,40,.35);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+    }
+    .brand{
+      display:flex; flex-direction:column; gap:2px;
+      min-width: 220px;
+    }
+    .brand .name{font-weight:860; letter-spacing:.2px}
+    .brand .role{color:var(--muted); font-weight:650; font-size: 13px}
+
+    /* Tabs */
+    .tabs{
+      display:flex; flex-wrap:wrap; gap:8px;
+      justify-content:flex-end;
+    }
+    .tabbtn{
+      appearance:none; border:1px solid var(--faint);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.86);
+      padding:10px 12px;
+      border-radius: 14px;
+      font-weight: 780;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .08s ease, border-color .12s ease, background .12s ease;
+    }
+    .tabbtn:hover{border-color: rgba(122,162,255,.40)}
+    .tabbtn:active{transform: translateY(1px)}
+    .tabbtn[aria-selected="true"]{
+      border-color: rgba(82,227,194,.42);
+      background: linear-gradient(180deg, rgba(82,227,194,.14), rgba(122,162,255,.08));
+    }
+
+    /* Cards / sections */
+    .card{
+      margin-top:16px;
+      border:1px solid var(--faint);
+      border-radius: var(--radius);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .pad{padding:18px}
+
+    /* About hero (first page) */
+    .hero{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap:16px;
+      align-items:center;
+      padding:22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    @media (max-width: 720px){
+      .topbar{flex-direction:column; align-items:stretch}
+      .tabs{justify-content:flex-start}
+      .hero{grid-template-columns: 1fr; text-align:left}
+    }
+
+    .photo{
+      width:140px; height:140px;
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid var(--faint);
+      background: rgba(255,255,255,.06);
+      display:grid; place-items:center;
+    }
+    .photo img{width:100%; height:100%; object-fit:cover; display:block;}
+    .h-title{margin:0; font-size: clamp(22px, 3.3vw, 34px); font-weight: 900}
+    .h-sub{margin:6px 0 0 0; color: var(--muted); font-weight: 680}
+    .h-desc{margin:12px 0 0 0; color: rgba(255,255,255,.86); max-width: 68ch}
+
+    .metaRow{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:14px;
+    }
+    .chip{
+      border:1px solid var(--faint);
+      background: rgba(255,255,255,.03);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,.78);
+    }
+
+    .actions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:14px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:8px;
+      text-decoration:none;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--faint);
+      background: rgba(255,255,255,.03);
+      color: rgba(255,255,255,.90);
+      font-weight: 780;
+      font-size: 13px;
+    }
+    .btn:hover{border-color: rgba(122,162,255,.42)}
+    .btn.primary{
+      border-color: rgba(82,227,194,.34);
+      background: linear-gradient(180deg, rgba(82,227,194,.12), rgba(122,162,255,.06));
+    }
+
+    .sectionTitle{
+      display:flex; align-items:baseline; justify-content:space-between; gap:12px;
+      padding:16px 18px 0 18px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 15px;
+      letter-spacing:.7px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.88);
+    }
+    .sectionTitle .hint{margin:0; color:var(--muted); font-size: 12px; font-weight:650}
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    @media (max-width: 860px){ .grid2{grid-template-columns:1fr} }
+
+    .mini{
+      border:1px solid var(--faint);
+      border-radius: 16px;
+      background: var(--card2);
+      padding:14px;
+    }
+    .k{color:var(--muted); font-size:12px; margin-bottom:4px}
+    .v{font-weight:750}
+    .v a{text-decoration:none; border-bottom:1px dashed rgba(122,162,255,.55)}
+    .v a:hover{border-bottom-color: rgba(82,227,194,.7)}
+
+    /* Timeline / list items */
+    .list{display:flex; flex-direction:column; gap:12px; margin-top:10px}
+    .item{
+      border:1px solid var(--faint);
+      border-radius: 16px;
+      background: var(--card2);
+      padding:14px;
+    }
+    .itemTop{
+      display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; justify-content:space-between;
+    }
+    .itemTitle{font-weight: 900}
+    .itemOrg{color: var(--muted); font-weight: 680; margin-top:2px}
+    .itemDate{color: var(--muted); font-size: 13px; font-weight: 700}
+    ul{margin:10px 0 0 18px; padding:0}
+    li{margin:6px 0; color: rgba(255,255,255,.86)}
+    .pubLink{
+      text-decoration:none;
+      border-bottom: 1px dashed rgba(82,227,194,.65);
+    }
+    .pubLink:hover{border-bottom-color: rgba(122,162,255,.75)}
+
+    /* Tab panels */
+    [role="tabpanel"]{display:none}
+    [role="tabpanel"][data-open="true"]{display:block}
+
+    footer{
+      margin-top:18px;
+      text-align:center;
+      color: rgba(255,255,255,.60);
+      font-size: 12.5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="name">Franz Pablo Antezana Lopez</div>
+        <div class="role">Civil Engineer • Remote Sensing • GIS • InSAR • Data-driven Earth Observation</div>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Sections">
+        <button class="tabbtn" id="tab-about" role="tab" aria-selected="true" aria-controls="panel-about">About Me</button>
+        <button class="tabbtn" id="tab-pubs" role="tab" aria-selected="false" aria-controls="panel-pubs">Publications</button>
+        <button class="tabbtn" id="tab-work" role="tab" aria-selected="false" aria-controls="panel-work">Work Experience</button>
+      </div>
+    </div>
+
+    <!-- ABOUT ME (FIRST PAGE: only pic + description + social/contact) -->
+    <section class="card" id="panel-about" role="tabpanel" aria-labelledby="tab-about" data-open="true">
+      <div class="hero">
+        <div class="photo">
+          <img src="profile.jpg" alt="Photo of Franz Pablo Antezana Lopez"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;color:rgba(255,255,255,.75);font-weight:900&quot;>Add<br>profile.jpg</span>';">
+        </div>
+
+        <div>
+          <h1 class="h-title">Franz Pablo Antezana Lopez</h1>
+          <p class="h-sub">Civil Engineer • Geosciences • Remote Sensing &amp; GIS</p>
+
+          <!-- Enhanced description grounded in your public profiles -->
+          <p class="h-desc">
+            Civil Engineer with a geoscience-driven focus on Earth observation, specializing in SAR/InSAR analysis, geospatial modeling, and
+            remote-sensing workflows that connect physical processes with actionable environmental insights. Experienced in applying machine learning
+            and numerical methods to problems such as ground deformation, atmospheric and carbon-related datasets, forest/vegetation monitoring, and
+            terrain-driven hazards. Currently pursuing doctoral research in space technology applications at Beihang University while building
+            practical, reproducible pipelines in open-source tools for interdisciplinary collaboration.
+          </p>
+
+          <div class="metaRow" aria-label="Highlights">
+            <span class="chip">Cochabamba, Bolivia</span>
+            <span class="chip">Spanish • English • Mandarin</span>
+            <span class="chip">InSAR / DInSAR / PSInSAR / SBAS</span>
+            <span class="chip">Remote sensing • GIS • LiDAR • Multispectral</span>
+          </div>
+
+          <div class="actions" aria-label="Primary actions">
+            <a class="btn primary" href="mailto:f.p.antezana@outlook.com">✉️ Email</a>
+            <a class="btn primary" href="mailto:antezana@buaa.edu.cn">✉️ Email</a>
+            <a class="btn" href="tel:+86 18801092421">📞 Call</a>
+
+            <!-- Social networks requested -->
+            <a class="btn" href="https://scholar.google.com/citations?user=v2-j-4U4RTsC&hl=es" target="_blank" rel="noreferrer">🎓 Google Scholar</a>
+            <a class="btn" href="https://www.researchgate.net/profile/Franz-Antezana-Lopez?ev=hdr_xprf" target="_blank" rel="noreferrer">RG ResearchGate</a>
+            <a class="btn" href="https://github.com/franzpsisco-blip" target="_blank" rel="noreferrer">⌂ GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/in/franz-pablo-antezana-l%C3%B3pez-000132254/" target="_blank" rel="noreferrer">in LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact details (kept professional, still on About tab) -->
+      <div class="sectionTitle">
+        <h2>Contact</h2>
+        <p class="hint">Direct details</p>
+      </div>
+      <div class="pad">
+        <div class="grid2">
+          <div class="mini">
+            <div class="k">Email</div>
+            <div class="v"><a href="mailto:f.p.antezana@outlook.com">f.p.antezana@outlook.com</a></div>
+          </div>
+          <div class="mini">
+            <div class="k">Phone</div>
+            <div class="v"><a href="tel:+8618801092421">+(86) 18801092421</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section class="card" id="panel-pubs" role="tabpanel" aria-labelledby="tab-pubs" data-open="false">
+      <div class="sectionTitle">
+        <h2>Publications</h2>
+        <p class="hint">Hyperlinked to DOI / source</p>
+      </div>
+
+      <div class="pad">
+        <div class="list">
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.1016/j.rse.2025.114761" target="_blank" rel="noreferrer">
+                  High-resolution anthropogenic emission inventories with deep learning in northern South America
+                </a>
+              </div>
+              <div class="itemDate">2025-04</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q1 • DOI: 10.1016/j.rse.2025.114761</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.5281/zenodo.13895409" target="_blank" rel="noreferrer">
+                  Global Daily XCO2 at 0.1°×0.1° Spatial Resolution Integrating OCO-3, GOSAT, CAMS with EOF and Deep Learning
+                </a>
+              </div>
+              <div class="itemDate">2024-12-31</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q1 • DOI: 10.5281/zenodo.13895409</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.1016/j.rse.2024.114296" target="_blank" rel="noreferrer">
+                  Canopy reflectance modeling of row aquatic vegetation: AVRM and AVMC
+                </a>
+              </div>
+              <div class="itemDate">2024-09</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q1 • DOI: 10.1016/j.rse.2024.114296</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.1016/j.jag.2024.104078" target="_blank" rel="noreferrer">
+                  Deep learning for water quality multivariate assessment in inland water across China
+                </a>
+              </div>
+              <div class="itemDate">2024-09</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q1 • DOI: 10.1016/j.jag.2024.104078</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.3390/app14146065" target="_blank" rel="noreferrer">
+                  Model-Based Design and Testbed for CubeSat Attitude Determination and Control System with Magnetic Actuation
+                </a>
+              </div>
+              <div class="itemDate">2024-07-11</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q2 • DOI: 10.3390/app14146065</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.1016/j.jag.2023.103184" target="_blank" rel="noreferrer">
+                  Lithium quantification based on random forest with multi-source geoinformation in Coipasa Salt Flats, Bolivia
+                </a>
+              </div>
+              <div class="itemDate">2023-03</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q1 • DOI: 10.1016/j.jag.2023.103184</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.3390/rs14112622" target="_blank" rel="noreferrer">
+                  XCO2 and XCH4 Reconstruction Using GOSAT Satellite Data Based on EOF-Algorithm
+                </a>
+              </div>
+              <div class="itemDate">2022-05-31</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q1 • DOI: 10.3390/rs14112622</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.52428/20758944.v17i51.132" target="_blank" rel="noreferrer">
+                  Simulación numérica de parámetros físicos atmosféricos con el modelo WRF para el análisis climático en el Municipio de Tiquipaya (Bolivia)
+                </a>
+              </div>
+              <div class="itemDate">2021-12-10</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q3 • DOI: 10.52428/20758944.v17i51.132</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">Numerical simulation using Discrete Element Method (DEM) for estimating rock mechanical parameters</div>
+              <div class="itemDate">2018–2019</div>
+            </div>
+            <div class="itemOrg">Journal Article • Q3</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">
+                <a class="pubLink" href="https://doi.org/10.2139/ssrn.4830130" target="_blank" rel="noreferrer">
+                  Ground Motion based on Deep Learning with InSAR &amp; Composite Geodata: Rocha River Basin, Cochabamba Case Study
+                </a>
+              </div>
+              <div class="itemDate">2024-06-31</div>
+            </div>
+            <div class="itemOrg">Preprint • Conference Paper • DOI: 10.2139/ssrn.4830130</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">Integrated characterization and analysis of landslide areas using Finite Elements Method and InSAR techniques applied to Taquiña Basin in Cochabamba-Bolivia</div>
+              <div class="itemDate">2019–2020</div>
+            </div>
+            <div class="itemOrg">Conference Paper</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">Fabrication of a low-cost inclinometer and data acquisition library developed in Python, for in-situ displacement measurements</div>
+              <div class="itemDate">2019–2020</div>
+            </div>
+            <div class="itemOrg">Conference Paper</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">Direct shear test on meso-scale rock discontinuities</div>
+              <div class="itemDate">2018–2019</div>
+            </div>
+            <div class="itemOrg">Conference Paper</div>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div class="itemTitle">Validation of consolidation parameters through constant rate of strain test on cohesive soils in Cochabamba, Bolivia</div>
+              <div class="itemDate">2017–2018</div>
+            </div>
+            <div class="itemOrg">Conference Paper</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK EXPERIENCE -->
+    <section class="card" id="panel-work" role="tabpanel" aria-labelledby="tab-work" data-open="false">
+      <div class="sectionTitle">
+        <h2>Work Experience</h2>
+        <p class="hint">Selected roles</p>
+      </div>
+
+      <div class="pad">
+        <div class="list">
+          <div class="item">
+            <div class="itemTop">
+              <div>
+                <div class="itemTitle">Earth Observation Technician</div>
+                <div class="itemOrg">Satellite Image Processing and Analysis Laboratory (LPAIS) — Bolivian Space Agency (ABE)</div>
+              </div>
+              <div class="itemDate">Jan 2022 — Aug 2023</div>
+            </div>
+            <ul>
+              <li>Radar image processing for slow movement detection.</li>
+              <li>Geospatial modeling and GIS applied to geology/geomorphology.</li>
+              <li>GIS workflows for forests, vegetation, and crops.</li>
+              <li>Data processing with Machine Learning / Deep Learning applications.</li>
+              <li>Remote sensor data processing (LiDAR, Radar, Multispectral, Hyperspectral).</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div>
+                <div class="itemTitle">Lecturer — Researcher</div>
+                <div class="itemOrg">Civil Engineering Laboratories — Universidad del Valle</div>
+              </div>
+              <div class="itemDate">Aug 2021 — May 2022</div>
+            </div>
+            <ul>
+              <li>Optical and LiDAR image processing with drones.</li>
+              <li>Radar image processing for landslide detection (SBASInSAR).</li>
+              <li>Design and management of remote meteorological stations.</li>
+              <li>Laboratory tests on soils, steel, and concrete.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div>
+                <div class="itemTitle">Researcher</div>
+                <div class="itemOrg">Geotechnical Laboratory “GTUMSS” — Universidad Mayor de San Simón</div>
+              </div>
+              <div class="itemDate">Feb 2019 — Dec 2020</div>
+            </div>
+            <ul>
+              <li>Remote sensing and GIS workflows.</li>
+              <li>Optical image processing with drones.</li>
+              <li>Geological characterizations.</li>
+              <li>Laboratory and field tests in soil and rock mechanics.</li>
+            </ul>
+          </div>
+
+          <div class="item">
+            <div class="itemTop">
+              <div>
+                <div class="itemTitle">Conference Participation</div>
+                <div class="itemOrg">First China–Latin American and Caribbean States Space Cooperation Forum</div>
+              </div>
+              <div class="itemDate">2024</div>
+            </div>
+            <ul>
+              <li>Delivered keynote speeches as a speaker on remote sensing insights and future perspectives.</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Franz Pablo Antezana Lopez • Single-file HTML CV • Replace <b>earth-bg.jpg</b> and <b>profile.jpg</b> with your images
+    </footer>
+  </div>
+
+  <script>
+    // Simple accessible tabs
+    const tabs = [
+      {btn: "tab-about", panel: "panel-about"},
+      {btn: "tab-pubs",  panel: "panel-pubs"},
+      {btn: "tab-work",  panel: "panel-work"}
+    ];
+
+    function openTab(btnId){
+      tabs.forEach(t => {
+        const btn = document.getElementById(t.btn);
+        const panel = document.getElementById(t.panel);
+        const isOpen = (t.btn === btnId);
+        btn.setAttribute("aria-selected", isOpen ? "true" : "false");
+        panel.setAttribute("data-open", isOpen ? "true" : "false");
+      });
+    }
+
+    tabs.forEach(t => {
+      document.getElementById(t.btn).addEventListener("click", () => openTab(t.btn));
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
