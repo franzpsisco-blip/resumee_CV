@@ -5,19 +5,20 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Franz Pablo Antezana Lopez — Civil Engineer | Remote Sensing & GIS</title>
   <meta name="description" content="Franz Pablo Antezana Lopez — Civil Engineer focused on Remote Sensing, GIS, InSAR, geosciences, and data-driven Earth observation." />
+
   <style>
     :root{
       --bg:#070b16;
-      --card: rgba(12,18,40,.70);
-      --card2: rgba(12,18,40,.55);
+      --card: rgba(10,14,28,.55);
+      --card2: rgba(10,14,28,.42);
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --faint: rgba(255,255,255,.10);
+      --muted: rgba(255,255,255,.72);
+      --faint: rgba(255,255,255,.12);
       --accent: #7aa2ff;
       --accent2:#52e3c2;
-      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --shadow: 0 18px 55px rgba(0,0,0,.55);
       --radius: 18px;
-      --max: 1080px;
+      --max: 1100px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -30,74 +31,67 @@
       overflow-x:hidden;
     }
 
-    /* Earth background */
+    /* EARTH BACKGROUND - make it clearly visible like a wallpaper */
     .bg{
       position: fixed;
       inset:0;
       z-index:-2;
-      background:
-        linear-gradient(180deg, rgba(7,11,22,.85) 0%, rgba(7,11,22,.92) 35%, rgba(7,11,22,.98) 100%),
-        url('earth-bg.jpg');
+      background-image: url('earth-bg.jpg');
       background-size: cover;
       background-position: center;
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.02);
+      background-repeat:no-repeat;
+      transform: scale(1.08);              /* slightly zoom for “wallpaper” feel */
+      filter: saturate(1.15) contrast(1.10) brightness(0.95);
     }
-    .bg:after{
+
+    /* overlay: keep text readable but DO NOT hide the wallpaper */
+    .bg::after{
       content:"";
-      position:absolute; inset:0;
+      position:absolute;
+      inset:0;
       background:
-        radial-gradient(900px 520px at 18% 12%, rgba(122,162,255,.20), transparent 60%),
-        radial-gradient(900px 520px at 86% 18%, rgba(82,227,194,.18), transparent 60%);
+        radial-gradient(900px 520px at 18% 12%, rgba(122,162,255,.18), transparent 60%),
+        radial-gradient(900px 520px at 86% 18%, rgba(82,227,194,.16), transparent 60%),
+        linear-gradient(180deg, rgba(7,11,22,.35) 0%, rgba(7,11,22,.55) 40%, rgba(7,11,22,.70) 100%);
       pointer-events:none;
-      z-index: -1;
     }
 
     a{color:inherit}
     .wrap{max-width:var(--max); margin:0 auto; padding:26px 18px 64px;}
 
-    /* Top bar */
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
       gap:14px;
       padding:14px 16px;
       border:1px solid var(--faint);
       border-radius: var(--radius);
-      background: rgba(12,18,40,.35);
+      background: rgba(10,14,28,.28);
       backdrop-filter: blur(10px);
       box-shadow: var(--shadow);
     }
-    .brand{
-      display:flex; flex-direction:column; gap:2px;
-      min-width: 220px;
-    }
-    .brand .name{font-weight:860; letter-spacing:.2px}
+    .brand{display:flex; flex-direction:column; gap:2px; min-width: 240px;}
+    .brand .name{font-weight:900; letter-spacing:.2px}
     .brand .role{color:var(--muted); font-weight:650; font-size: 13px}
 
-    /* Tabs */
-    .tabs{
-      display:flex; flex-wrap:wrap; gap:8px;
-      justify-content:flex-end;
-    }
+    .tabs{display:flex; flex-wrap:wrap; gap:8px; justify-content:flex-end;}
     .tabbtn{
       appearance:none; border:1px solid var(--faint);
       background: rgba(255,255,255,.04);
-      color: rgba(255,255,255,.86);
+      color: rgba(255,255,255,.88);
       padding:10px 12px;
       border-radius: 14px;
-      font-weight: 780;
+      font-weight: 820;
       font-size: 13px;
       cursor:pointer;
       transition: transform .08s ease, border-color .12s ease, background .12s ease;
     }
-    .tabbtn:hover{border-color: rgba(122,162,255,.40)}
+    .tabbtn:hover{border-color: rgba(122,162,255,.42)}
     .tabbtn:active{transform: translateY(1px)}
     .tabbtn[aria-selected="true"]{
-      border-color: rgba(82,227,194,.42);
+      border-color: rgba(82,227,194,.45);
       background: linear-gradient(180deg, rgba(82,227,194,.14), rgba(122,162,255,.08));
     }
 
-    /* Cards / sections */
     .card{
       margin-top:16px;
       border:1px solid var(--faint);
@@ -109,51 +103,50 @@
     }
     .pad{padding:18px}
 
-    /* About hero (first page) */
+    /* HERO / ABOUT: bigger profile image */
     .hero{
       display:grid;
-      grid-template-columns: 140px 1fr;
-      gap:16px;
+      grid-template-columns: 220px 1fr;  /* bigger */
+      gap:18px;
       align-items:center;
-      padding:22px;
+      padding:24px;
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
     }
-    @media (max-width: 720px){
+    @media (max-width: 760px){
       .topbar{flex-direction:column; align-items:stretch}
       .tabs{justify-content:flex-start}
       .hero{grid-template-columns: 1fr; text-align:left}
     }
 
     .photo{
-      width:140px; height:140px;
-      border-radius: 22px;
+      width:220px; height:220px;          /* bigger */
+      border-radius: 26px;
       overflow:hidden;
       border:1px solid var(--faint);
       background: rgba(255,255,255,.06);
       display:grid; place-items:center;
+      box-shadow: 0 18px 40px rgba(0,0,0,.45);
+    }
+    @media (max-width: 760px){
+      .photo{width:190px; height:190px}
     }
     .photo img{width:100%; height:100%; object-fit:cover; display:block;}
-    .h-title{margin:0; font-size: clamp(22px, 3.3vw, 34px); font-weight: 900}
-    .h-sub{margin:6px 0 0 0; color: var(--muted); font-weight: 680}
-    .h-desc{margin:12px 0 0 0; color: rgba(255,255,255,.86); max-width: 68ch}
 
-    .metaRow{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:14px;
-    }
+    .h-title{margin:0; font-size: clamp(24px, 3.5vw, 36px); font-weight: 950}
+    .h-sub{margin:6px 0 0 0; color: var(--muted); font-weight: 720}
+    .h-desc{margin:12px 0 0 0; color: rgba(255,255,255,.88); max-width: 72ch}
+
+    .metaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;}
     .chip{
       border:1px solid var(--faint);
       background: rgba(255,255,255,.03);
       padding:7px 10px;
       border-radius:999px;
       font-size: 12.5px;
-      color: rgba(255,255,255,.78);
+      color: rgba(255,255,255,.80);
     }
 
-    .actions{
-      display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:14px;
-    }
+    .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;}
     .btn{
       display:inline-flex; align-items:center; gap:8px;
       text-decoration:none;
@@ -161,15 +154,27 @@
       border-radius: 14px;
       border:1px solid var(--faint);
       background: rgba(255,255,255,.03);
-      color: rgba(255,255,255,.90);
-      font-weight: 780;
+      color: rgba(255,255,255,.92);
+      font-weight: 820;
       font-size: 13px;
     }
-    .btn:hover{border-color: rgba(122,162,255,.42)}
+    .btn:hover{border-color: rgba(122,162,255,.45)}
     .btn.primary{
-      border-color: rgba(82,227,194,.34);
-      background: linear-gradient(180deg, rgba(82,227,194,.12), rgba(122,162,255,.06));
+      border-color: rgba(82,227,194,.38);
+      background: linear-gradient(180deg, rgba(82,227,194,.14), rgba(122,162,255,.06));
     }
+
+    /* Inspirational statement block */
+    .quote{
+      margin-top:16px;
+      border:1px solid rgba(82,227,194,.25);
+      background: rgba(82,227,194,.06);
+      border-radius: 16px;
+      padding:14px 14px;
+      color: rgba(255,255,255,.88);
+    }
+    .quote strong{color: rgba(82,227,194,.95)}
+    .quote .small{margin-top:6px; color: var(--muted); font-size: 12.5px; font-weight:650}
 
     .sectionTitle{
       display:flex; align-items:baseline; justify-content:space-between; gap:12px;
@@ -180,30 +185,10 @@
       font-size: 15px;
       letter-spacing:.7px;
       text-transform: uppercase;
-      color: rgba(255,255,255,.88);
+      color: rgba(255,255,255,.90);
     }
     .sectionTitle .hint{margin:0; color:var(--muted); font-size: 12px; font-weight:650}
 
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:10px;
-    }
-    @media (max-width: 860px){ .grid2{grid-template-columns:1fr} }
-
-    .mini{
-      border:1px solid var(--faint);
-      border-radius: 16px;
-      background: var(--card2);
-      padding:14px;
-    }
-    .k{color:var(--muted); font-size:12px; margin-bottom:4px}
-    .v{font-weight:750}
-    .v a{text-decoration:none; border-bottom:1px dashed rgba(122,162,255,.55)}
-    .v a:hover{border-bottom-color: rgba(82,227,194,.7)}
-
-    /* Timeline / list items */
     .list{display:flex; flex-direction:column; gap:12px; margin-top:10px}
     .item{
       border:1px solid var(--faint);
@@ -214,25 +199,24 @@
     .itemTop{
       display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; justify-content:space-between;
     }
-    .itemTitle{font-weight: 900}
-    .itemOrg{color: var(--muted); font-weight: 680; margin-top:2px}
-    .itemDate{color: var(--muted); font-size: 13px; font-weight: 700}
+    .itemTitle{font-weight: 950}
+    .itemOrg{color: var(--muted); font-weight: 700; margin-top:2px}
+    .itemDate{color: var(--muted); font-size: 13px; font-weight: 760}
     ul{margin:10px 0 0 18px; padding:0}
-    li{margin:6px 0; color: rgba(255,255,255,.86)}
+    li{margin:6px 0; color: rgba(255,255,255,.88)}
     .pubLink{
       text-decoration:none;
-      border-bottom: 1px dashed rgba(82,227,194,.65);
+      border-bottom: 1px dashed rgba(82,227,194,.70);
     }
-    .pubLink:hover{border-bottom-color: rgba(122,162,255,.75)}
+    .pubLink:hover{border-bottom-color: rgba(122,162,255,.78)}
 
-    /* Tab panels */
     [role="tabpanel"]{display:none}
     [role="tabpanel"][data-open="true"]{display:block}
 
     footer{
       margin-top:18px;
       text-align:center;
-      color: rgba(255,255,255,.60);
+      color: rgba(255,255,255,.62);
       font-size: 12.5px;
     }
   </style>
@@ -255,25 +239,23 @@
       </div>
     </div>
 
-    <!-- ABOUT ME (FIRST PAGE: only pic + description + social/contact) -->
+    <!-- ABOUT -->
     <section class="card" id="panel-about" role="tabpanel" aria-labelledby="tab-about" data-open="true">
       <div class="hero">
         <div class="photo">
           <img src="profile.jpg" alt="Photo of Franz Pablo Antezana Lopez"
-            onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;color:rgba(255,255,255,.75);font-weight:900&quot;>Add<br>profile.jpg</span>';">
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;color:rgba(255,255,255,.78);font-weight:950&quot;>Add<br>profile.jpg</span>';">
         </div>
 
         <div>
           <h1 class="h-title">Franz Pablo Antezana Lopez</h1>
           <p class="h-sub">Civil Engineer • Geosciences • Remote Sensing &amp; GIS</p>
 
-          <!-- Enhanced description grounded in your public profiles -->
           <p class="h-desc">
-            Civil Engineer with a geoscience-driven focus on Earth observation, specializing in SAR/InSAR analysis, geospatial modeling, and
-            remote-sensing workflows that connect physical processes with actionable environmental insights. Experienced in applying machine learning
-            and numerical methods to problems such as ground deformation, atmospheric and carbon-related datasets, forest/vegetation monitoring, and
-            terrain-driven hazards. Currently pursuing doctoral research in space technology applications at Beihang University while building
-            practical, reproducible pipelines in open-source tools for interdisciplinary collaboration.
+            Civil Engineer with a geoscience-driven focus on Earth observation, specializing in SAR/InSAR analysis, geospatial modeling,
+            and remote-sensing workflows that connect physical processes with reproducible, data-driven insights. Experienced in applying
+            machine learning and numerical methods to ground deformation, environmental monitoring, and hazard-relevant mapping—bridging
+            research quality with operational pipelines across LiDAR, radar, and multispectral data.
           </p>
 
           <div class="metaRow" aria-label="Highlights">
@@ -283,35 +265,26 @@
             <span class="chip">Remote sensing • GIS • LiDAR • Multispectral</span>
           </div>
 
+          <!-- Your updated actions block (2 emails + phone + reordered social links) -->
           <div class="actions" aria-label="Primary actions">
-            <a class="btn primary" href="mailto:f.p.antezana@outlook.com">✉️ Email</a>
-            <a class="btn primary" href="mailto:antezana@buaa.edu.cn">✉️ Email</a>
-            <a class="btn" href="tel:+86 18801092421">📞 Call</a>
+            <a class="btn primary" href="mailto:f.p.antezana@outlook.com">✉️ Personal Email</a>
+            <a class="btn primary" href="mailto:antezana@buaa.edu.cn">✉️ Institutional Email</a>
+            <a class="btn" href="tel:+8618801092421">📞 Call</a>
 
-            <!-- Social networks requested -->
             <a class="btn" href="https://scholar.google.com/citations?user=v2-j-4U4RTsC&hl=es" target="_blank" rel="noreferrer">🎓 Google Scholar</a>
             <a class="btn" href="https://www.researchgate.net/profile/Franz-Antezana-Lopez?ev=hdr_xprf" target="_blank" rel="noreferrer">RG ResearchGate</a>
             <a class="btn" href="https://github.com/franzpsisco-blip" target="_blank" rel="noreferrer">⌂ GitHub</a>
             <a class="btn" href="https://www.linkedin.com/in/franz-pablo-antezana-l%C3%B3pez-000132254/" target="_blank" rel="noreferrer">in LinkedIn</a>
           </div>
-        </div>
-      </div>
 
-      <!-- Contact details (kept professional, still on About tab) -->
-      <div class="sectionTitle">
-        <h2>Contact</h2>
-        <p class="hint">Direct details</p>
-      </div>
-      <div class="pad">
-        <div class="grid2">
-          <div class="mini">
-            <div class="k">Email</div>
-            <div class="v"><a href="mailto:f.p.antezana@outlook.com">f.p.antezana@outlook.com</a></div>
+          <!-- Inspirational message (replaces Contact section) -->
+          <div class="quote" role="note" aria-label="Motivational statement">
+            <div>
+              <strong>Turning pixels into decisions.</strong> Remote sensing and geospatial modeling let us observe Earth’s dynamics at scale—so we can
+              understand change earlier, map risk with more confidence, and design smarter, evidence-based solutions.
+            </div>
           </div>
-          <div class="mini">
-            <div class="k">Phone</div>
-            <div class="v"><a href="tel:+8618801092421">+(86) 18801092421</a></div>
-          </div>
+
         </div>
       </div>
     </section>
@@ -325,7 +298,6 @@
 
       <div class="pad">
         <div class="list">
-
           <div class="item">
             <div class="itemTop">
               <div class="itemTitle">
@@ -473,7 +445,6 @@
             </div>
             <div class="itemOrg">Conference Paper</div>
           </div>
-
         </div>
       </div>
     </section>
@@ -545,27 +516,24 @@
               <div class="itemDate">2024</div>
             </div>
             <ul>
-              <li>Delivered keynote speeches as a speaker on remote sensing insights and future perspectives.</li>
+              <li>Delivered keynote speeches on remote sensing insights and future perspectives.</li>
             </ul>
           </div>
-
         </div>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> Franz Pablo Antezana Lopez • Single-file HTML CV • Replace <b>earth-bg.jpg</b> and <b>profile.jpg</b> with your images
+      © <span id="year"></span> FPAL_CHBE
     </footer>
   </div>
 
   <script>
-    // Simple accessible tabs
     const tabs = [
       {btn: "tab-about", panel: "panel-about"},
       {btn: "tab-pubs",  panel: "panel-pubs"},
       {btn: "tab-work",  panel: "panel-work"}
     ];
-
     function openTab(btnId){
       tabs.forEach(t => {
         const btn = document.getElementById(t.btn);
@@ -575,11 +543,7 @@
         panel.setAttribute("data-open", isOpen ? "true" : "false");
       });
     }
-
-    tabs.forEach(t => {
-      document.getElementById(t.btn).addEventListener("click", () => openTab(t.btn));
-    });
-
+    tabs.forEach(t => document.getElementById(t.btn).addEventListener("click", () => openTab(t.btn)));
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
